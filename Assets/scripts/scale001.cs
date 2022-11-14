@@ -145,9 +145,9 @@ public class scale001 : MonoBehaviour
 
 
 
-        var color1 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedColorTime1 / timeColorChange));
-        var color2 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedColorTime2 / timeColorChange));
-        var color3 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedColorTime3 / timeColorChange));
+        var color1 = Mathf.Lerp(70, 255, curve.Evaluate(elapsedColorTime1 / timeColorChange));
+        var color2 = Mathf.Lerp(70, 255, curve.Evaluate(elapsedColorTime2 / timeColorChange));
+        var color3 = Mathf.Lerp(70, 255, curve.Evaluate(elapsedColorTime3 / timeColorChange));
 
         var ColorN = new UnityEngine.Color(color1 / 255.0f, color2 / 255.0f, color3 / 255.0f);
 
