@@ -9,7 +9,7 @@ using UnityEngine.TextCore.Text;
 public class camerafollow : MonoBehaviour
 {
     [SerializeField] private Transform character;
-    [SerializeField] private float smoothTime = 3.5f; //примерно
+    [SerializeField] private float smoothTime = 7.5f; //примерно
 
     private Vector3 vel;
 

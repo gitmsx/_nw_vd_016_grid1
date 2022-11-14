@@ -14,8 +14,15 @@ public class scale001 : MonoBehaviour
     [SerializeField] AnimationCurve curve;
     [SerializeField] AnimationCurve curveSling;
     [SerializeField][Range(-1, 1)] float Sling = -1.0f;
-    [SerializeField][Range(-1, 1)] float SlingMin = -1.0f;
-    [SerializeField][Range(-1, 1)] float SlingMax = 1.0f;
+    [SerializeField]  float SlingMin = -1.0f;
+    [SerializeField]  float SlingMax = 1.0f;
+
+    [SerializeField]  float SlingMinX = -1.0f;
+    [SerializeField]  float SlingMaxX = 11.0f;
+    [SerializeField]  float SlingMinY = -2.0f;
+    [SerializeField]  float SlingMaxY = 7.0f;
+    [SerializeField]  float SlingMinZ = -1.0f;
+    [SerializeField]  float SlingMaxZ = 21.0f;
 
     Vector3 transformlocalScale;
 
@@ -82,11 +89,12 @@ public class scale001 : MonoBehaviour
     void Reset()
     {
         elapsedTimeX = 0;
-        elapsedTimeY = 2;
-        elapsedTimeZ = 3;
+        elapsedTimeY = timeSling/2;
+        elapsedTimeZ = timeSling/4;
+
         elapsedTimeRotationX = 0;
-        elapsedTimeRotationY = 1;
-        elapsedTimeRotationZ = 2;
+        elapsedTimeRotationY = 180;
+        elapsedTimeRotationZ = 90;
 
         elapsedColorTime1 = 1;
         elapsedColorTime2 = 112;
@@ -110,14 +118,22 @@ public class scale001 : MonoBehaviour
         elapsedColorTime3 += Time.deltaTime;
 
 
-        float VolumeX = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeX / timeSling));
-        float VolumeY = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeY / timeSling));
-        float VolumeZ = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeZ / timeSling));
+        float VolumeX = Mathf.Lerp(SlingMinX, SlingMaxX, curve.Evaluate(elapsedTimeX / timeSling));
+        float VolumeY = Mathf.Lerp(SlingMinY, SlingMaxY, curve.Evaluate(elapsedTimeY / timeSling));
+        float VolumeZ = Mathf.Lerp(SlingMinZ, SlingMaxZ, curve.Evaluate(elapsedTimeZ / timeSling));
 
-        Text12.text = "X " + Math.Round(elapsedTimeX, digits: 3).ToString() + "  Y " + Math.Round(VolumeY, digits: 3).ToString() + "  Z " + Math.Round(VolumeZ, digits: 3).ToString();
+        Text12.text = "elapsedTime " + Math.Round(elapsedTimeX, digits: 3).ToString() + "X " + Math.Round(VolumeX, digits: 3).ToString() + "  Y " + Math.Round(VolumeY, digits: 3).ToString() + "  Z " + Math.Round(VolumeZ, digits: 3).ToString();
+        Text12.text = "X " + Math.Round(VolumeX, digits: 3).ToString() + "  Y " + Math.Round(VolumeY, digits: 3).ToString() + "  Z " + Math.Round(VolumeZ, digits: 3).ToString();
 
-        transform.localScale = new Vector3(transformlocalScale.x + VolumeX, transformlocalScale.y + VolumeX, transformlocalScale.z + VolumeX);
+        transform.localScale = new Vector3(transformlocalScale.x + VolumeX, transformlocalScale.y + VolumeY, transformlocalScale.z + VolumeZ);
 
+
+
+        // rotation 
+
+          VolumeX = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeX / timeSling));
+          VolumeY = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeY / timeSling));
+          VolumeZ = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeZ / timeSling));
 
 
         float RotationX = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeRotationX / timeSling));

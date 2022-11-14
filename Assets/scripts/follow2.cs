@@ -10,7 +10,7 @@ using UnityEngine.TextCore.Text;
 public class follow2 : MonoBehaviour
 {
     [SerializeField] private Transform character;
-    [SerializeField] private float smoothTime = 1.5f; //примерно
+    [SerializeField] private float smoothTime = 2.5f; //примерно
 
     private Vector3 vel;
 
