@@ -62,7 +62,7 @@ public class bullet7 : MonoBehaviour
         Rend2.material.SetColor("_Color",ColorN) ;
 
 
-        Destroy(bulletClone, 125.5f);
+        Destroy(bulletClone, 5.5f);
 
 
 
@@ -90,21 +90,21 @@ public class bullet7 : MonoBehaviour
     {
 
 
-        foreach (var obj in listObj)
-        {
+        //foreach (var obj in listObj)
+        //{
 
-            var x1 = (float)Random.Range(-SShift1, SShift2);
-            var y1 = (float)Random.Range(-SShift1, SShift2);
-            var z1 = (float)Random.Range(-SShift1, SShift2);
+        //    var x1 = (float)Random.Range(-SShift1, SShift2);
+        //    var y1 = (float)Random.Range(-SShift1, SShift2);
+        //    var z1 = (float)Random.Range(-SShift1, SShift2);
 
-            var objtransform = obj.transform;
-            // objtransform.localScale = new Vector3(x1, y1, z1);
-            objtransform.localPosition = new Vector3(obj.transform.position.x + x1, obj.transform.position.y + y1, obj.transform.position.z + z1);
-
-
+        //    var objtransform = obj.transform;
+        //    // objtransform.localScale = new Vector3(x1, y1, z1);
+        //    objtransform.localPosition = new Vector3(obj.transform.position.x + x1, obj.transform.position.y + y1, obj.transform.position.z + z1);
 
 
-        }
+
+
+        //}
 
 
     }
