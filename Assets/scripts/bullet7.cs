@@ -69,7 +69,7 @@ public class bullet7 : MonoBehaviour
         Rend2.material.SetColor("_Color",ColorN) ;
 
 
-        Destroy(bulletClone, 5.5f);
+        Destroy(bulletClone2, 5.5f);
 
 
 

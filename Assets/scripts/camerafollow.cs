@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -10,7 +11,7 @@ public class camerafollow : MonoBehaviour
 {
     [SerializeField] private Transform character;
     [SerializeField] private float smoothTime = 7.5f; //примерно
-
+    [SerializeField] private Transform lookat;
     private Vector3 vel;
 
 
@@ -29,7 +30,7 @@ public class camerafollow : MonoBehaviour
 
         //можно еще иметь ссылку на саму камеру и сделать что-то типа
         transform.LookAt(character.position); // смотрит на персонажа
-
+        transform.LookAt(lookat.position); // смотрит на персонажа
 
     }
 
