@@ -43,7 +43,7 @@ public class follow2 : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, character.position, ref vel, smoothTime); //плавно перемещает камеру в точку координату персонажа
         transform.forward = Vector3.SmoothDamp(transform.forward, character.forward, ref vel, smoothTime); //плавно перемещает forward (поворачивает) cameraRig чтобы смотреть в то же место, куда и персонаж.
 
-      
+        transform.LookAt(character.position); // смотрит на персонажа
 
 
     }

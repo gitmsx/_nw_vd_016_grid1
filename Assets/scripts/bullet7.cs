@@ -48,6 +48,13 @@ public class bullet7 : MonoBehaviour
         var z1 = (float)Random.Range(-3, 5);
 
         Vector3 posi1 = new Vector3(x1, y1, z1);
+        Destroy(bulletClone, 5.5f);
+
+
+
+
+
+
         bulletClone2 = Instantiate(SperePF, posi1, transform.rotation);
         listObj.Add(bulletClone2);
 
