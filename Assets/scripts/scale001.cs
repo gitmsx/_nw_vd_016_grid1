@@ -28,6 +28,7 @@ public class scale001 : MonoBehaviour
 
 
     [SerializeField] float timeSling = 7.0f;
+    [SerializeField] float timeColorChange = 220f;
     [SerializeField] Vector3 startPosition;
     [SerializeField] Vector3 finishPosition;
     [SerializeField] Quaternion Qrotation;
@@ -48,6 +49,10 @@ public class scale001 : MonoBehaviour
     private float elapsedTimeRotationY;
     private float elapsedTimeRotationZ;
 
+    private float elapsedColorTime1;
+    private float elapsedColorTime2;
+    private float elapsedColorTime3;
+
     private Renderer Rend2;
 
     // Start is called before the first frame update
@@ -55,7 +60,7 @@ public class scale001 : MonoBehaviour
     {
 
         // GetComponent<Renderer>().material.color = Color.red;
-        var Rend2 = GetComponent<Renderer>();
+         Rend2 = GetComponent<Renderer>();
 
 
         Text2 = GameObject.Find("Text");
@@ -82,6 +87,12 @@ public class scale001 : MonoBehaviour
         elapsedTimeRotationX = 0;
         elapsedTimeRotationY = 1;
         elapsedTimeRotationZ = 2;
+
+        elapsedColorTime1 = 1;
+        elapsedColorTime2 = 112;
+        elapsedColorTime3 = 70;
+
+
     }
 
     // Update is called once per frame
@@ -94,6 +105,9 @@ public class scale001 : MonoBehaviour
         elapsedTimeRotationY += Time.deltaTime;
         elapsedTimeRotationZ += Time.deltaTime;
 
+        elapsedColorTime1 += Time.deltaTime;
+        elapsedColorTime2 += Time.deltaTime;
+        elapsedColorTime3 += Time.deltaTime;
 
 
         float VolumeX = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeX / timeSling));
@@ -117,14 +131,27 @@ public class scale001 : MonoBehaviour
 
         // Color
 
-        
 
-        var color1 = (int)Random.Range(0, 255);
-        var color2 = (int)Random.Range(0, 255);
-        var color3 = (int)Random.Range(0, 255);
+
+        elapsedColorTime2 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedTimeRotationX / timeSling));
+        elapsedColorTime2 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedTimeRotationX / timeSling));
+        elapsedColorTime3 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedTimeRotationX / timeSling));
+
+
+
+        // var color1 = (int)Random.Range(0, 255);
+        // var color2 = (int)Random.Range(0, 255);
+        // var color3 = (int)Random.Range(0, 255);
+
+
+
+        var color1 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedColorTime1 / timeColorChange));
+        var color2 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedColorTime2 / timeColorChange));
+        var color3 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedColorTime3 / timeColorChange));
 
         var ColorN = new UnityEngine.Color(color1 / 255.0f, color2 / 255.0f, color3 / 255.0f);
 
+       
         Rend2.material.SetColor("_Color", ColorN);
 
 
