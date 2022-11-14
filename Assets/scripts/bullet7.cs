@@ -41,7 +41,7 @@ public class bullet7 : MonoBehaviour
         listObj.Add(bulletClone);
 
         // Debug.Log(color_obj);
-        Debug.Log(material_obj);
+       // Debug.Log(material_obj);
 
         var x1 = (float)Random.Range(-3, 5);
         var y1 = (float)Random.Range(-3, 5);
@@ -71,7 +71,7 @@ public class bullet7 : MonoBehaviour
 
     void make10units()
     {
-        Debug.Log(listObj.Count);
+      //  Debug.Log(listObj.Count);
         // for (int i = 0; i < listObj.Count; i++)
 
         int i = 1;

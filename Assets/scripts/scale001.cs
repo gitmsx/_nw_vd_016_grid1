@@ -13,7 +13,10 @@ public class scale001 : MonoBehaviour
     [Header("Sling Attributes")]
     [SerializeField] AnimationCurve curve;
     [SerializeField] AnimationCurve curveSling;
-    [SerializeField][Range(-1, 1)] float Sling = -1.0f;
+    //   [SerializeField][Range(-1, 1)] float Sling = -1.0f; 
+
+    // HideInInspector
+
     [SerializeField]  float SlingMin = -1.0f;
     [SerializeField]  float SlingMax = 1.0f;
 
