@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Color = UnityEngine.Color;
+using Random = UnityEngine.Random;
+
 
 public class scale001 : MonoBehaviour
 {
@@ -27,6 +30,7 @@ public class scale001 : MonoBehaviour
     [SerializeField] float timeSling = 7.0f;
     [SerializeField] Vector3 startPosition;
     [SerializeField] Vector3 finishPosition;
+    [SerializeField] Quaternion Qrotation;
 
 
     public Text Text1;
@@ -40,21 +44,31 @@ public class scale001 : MonoBehaviour
     private float elapsedTimeX;
     private float elapsedTimeY;
     private float elapsedTimeZ;
+    private float elapsedTimeRotationX;
+    private float elapsedTimeRotationY;
+    private float elapsedTimeRotationZ;
+
+    private Renderer Rend2;
 
     // Start is called before the first frame update
     void Start()
     {
 
+        // GetComponent<Renderer>().material.color = Color.red;
+        var Rend2 = GetComponent<Renderer>();
+
 
         Text2 = GameObject.Find("Text");
-        //  Text2.transform.Translate(1,1,1);
         Text12 = Text2.GetComponent<Text>();
         Text12.text = "111111111";
-    
 
 
 
-    transformlocalScale = transform.localScale;
+
+        transformlocalScale = transform.localScale;
+        Qrotation = transform.rotation;
+
+
         Text12 = Text2.GetComponent<Text>();
         Text12.text = "111111111";
 
@@ -65,6 +79,9 @@ public class scale001 : MonoBehaviour
         elapsedTimeX = 0;
         elapsedTimeY = 2;
         elapsedTimeZ = 3;
+        elapsedTimeRotationX = 0;
+        elapsedTimeRotationY = 1;
+        elapsedTimeRotationZ = 2;
     }
 
     // Update is called once per frame
@@ -73,16 +90,47 @@ public class scale001 : MonoBehaviour
         elapsedTimeX += Time.deltaTime;
         elapsedTimeY += Time.deltaTime;
         elapsedTimeZ += Time.deltaTime;
-//        transform.position = Vector3.Lerp(startPosition, finishPosition, curve.Evaluate(elapsedTime1 / timeSling));
+        elapsedTimeRotationX += Time.deltaTime;
+        elapsedTimeRotationY += Time.deltaTime;
+        elapsedTimeRotationZ += Time.deltaTime;
+
 
 
         float VolumeX = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeX / timeSling));
         float VolumeY = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeY / timeSling));
         float VolumeZ = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeZ / timeSling));
-        
+
         Text12.text = "X " + Math.Round(elapsedTimeX, digits: 3).ToString() + "  Y " + Math.Round(VolumeY, digits: 3).ToString() + "  Z " + Math.Round(VolumeZ, digits: 3).ToString();
 
         transform.localScale = new Vector3(transformlocalScale.x + VolumeX, transformlocalScale.y + VolumeX, transformlocalScale.z + VolumeX);
+
+
+
+        float RotationX = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeRotationX / timeSling));
+        float RotationY = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeRotationY / timeSling));
+        float RotationZ = Mathf.Lerp(SlingMin, SlingMax, curve.Evaluate(elapsedTimeRotationZ / timeSling));
+
+        transform.Rotate(Qrotation.x + VolumeX , Qrotation.x+VolumeY , Qrotation.z + VolumeZ );
+
+
+        //   transform.position = Vector3.Lerp(startPosition, finishPosition, curve.Evaluate(elapsedTime1 / timeSling));
+
+        // Color
+
+        
+
+        var color1 = (int)Random.Range(0, 255);
+        var color2 = (int)Random.Range(0, 255);
+        var color3 = (int)Random.Range(0, 255);
+
+        var ColorN = new UnityEngine.Color(color1 / 255.0f, color2 / 255.0f, color3 / 255.0f);
+
+        Rend2.material.SetColor("_Color", ColorN);
+
+
+
+
+
 
     }
 }
