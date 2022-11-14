@@ -133,9 +133,9 @@ public class scale001 : MonoBehaviour
 
 
 
-        elapsedColorTime2 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedTimeRotationX / timeSling));
-        elapsedColorTime2 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedTimeRotationX / timeSling));
-        elapsedColorTime3 = Mathf.Lerp(0, 255, curve.Evaluate(elapsedTimeRotationX / timeSling));
+        elapsedColorTime2 = Mathf.Lerp(70, 255, curve.Evaluate(elapsedTimeRotationX / timeSling));
+        elapsedColorTime2 = Mathf.Lerp(70, 255, curve.Evaluate(elapsedTimeRotationY / timeSling));
+        elapsedColorTime3 = Mathf.Lerp(70, 255, curve.Evaluate(elapsedTimeRotationZ / timeSling));
 
 
 
